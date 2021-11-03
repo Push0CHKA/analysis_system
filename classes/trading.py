@@ -42,7 +42,7 @@ class Trade:
                             self.Tick = high
                             self.Time = tiktime
                             if print_flag:
-                                print(f" Сделка закрыта: profit: {self.Profit} | close time: {self.Time}")
+                                print(f"    Сделка закрыта: profit: {self.Profit} | close time: {self.Time}")
                             break
                         else:
                             self.Profit = round((tp - self.Ordopen) * self.Lot * 100000, 2)
@@ -50,7 +50,7 @@ class Trade:
                             self.Tick = tp
                             self.Time = tiktime
                             if print_flag:
-                                print(f" Сделка закрыта: profit: {self.Profit} | close time: {self.Time}")
+                                print(f"    Сделка закрыта: profit: {self.Profit} | close time: {self.Time}")
                             break
                     if (low <= sl) or ((cd == chart_data[len(chart_data) - 1]) and (high < self.Ordopen)):
                         if (cd == chart_data[len(chart_data) - 1]) and (high < self.Ordopen):  # принудительное закрытие сделки (конец графика)
@@ -59,7 +59,7 @@ class Trade:
                             self.Tick = low
                             self.Time = tiktime
                             if print_flag:
-                                print(f" Сделка закрыта: profit: {self.Profit} | close time: {self.Time}")
+                                print(f"    Сделка закрыта: profit: {self.Profit} | close time: {self.Time}")
                             break
                         else:
                             self.Profit = round((sl - self.Ordopen) * self.Lot * 100000, 2)
@@ -67,7 +67,7 @@ class Trade:
                             self.Tick = sl
                             self.Time = tiktime
                             if print_flag:
-                                print(f" Сделка закрыта: profit: {self.Profit} | close time: {self.Time}")
+                                print(f"    Сделка закрыта: profit: {self.Profit} | close time: {self.Time}")
                             break
                 if self.Buy_or_sell == 'sell':
                     if (low <= tp) or ((cd == chart_data[len(chart_data) - 1]) and (high <= self.Ordopen)):
@@ -77,7 +77,7 @@ class Trade:
                             self.Tick = high
                             self.Time = tiktime
                             if print_flag:
-                                print(f" Сделка закрыта: profit: {self.Profit} | close time: {self.Time}")
+                                print(f"    Сделка закрыта: profit: {self.Profit} | close time: {self.Time}")
                             break
                         else:
                             self.Profit = round((self.Ordopen - tp) * self.Lot * 100000, 2)
@@ -85,7 +85,7 @@ class Trade:
                             self.Tick = tp
                             self.Time = tiktime
                             if print_flag:
-                                print(f" Сделка закрыта: profit: {self.Profit} | close time: {self.Time}")
+                                print(f"    Сделка закрыта: profit: {self.Profit} | close time: {self.Time}")
                             break
                     if (high >= sl) or ((cd == chart_data[len(chart_data) - 1]) and (high > self.Ordopen)):
                         if (cd == chart_data[len(chart_data) - 1]) and (high > self.Ordopen):  # принудительное закрытие сделки (конец графика)
@@ -94,7 +94,7 @@ class Trade:
                             self.Tick = high
                             self.Time = tiktime
                             if print_flag:
-                                print(f" Сделка закрыта: profit: {self.Profit} | close time: {self.Time}")
+                                print(f"    Сделка закрыта: profit: {self.Profit} | close time: {self.Time}")
                             break
                         else:
                             self.Profit = round((self.Ordopen - sl) * self.Lot * 100000, 2)
@@ -102,9 +102,11 @@ class Trade:
                             self.Tick = sl
                             self.Time = tiktime
                             if print_flag:
-                                print(f" Сделка закрыта: profit: {self.Profit} | close time: {self.Time}")
+                                print(f"    Сделка закрыта: profit: {self.Profit} | close time: {self.Time}")
                             break
             if tiktime == self.Start_time:
+                if print_flag:
+                    print("  1) Соответствующий интервал найден")
                 find_flag = True
             if find_flag:
                 if abs(self.Mini - high) >= self.Ldiff:
@@ -116,7 +118,7 @@ class Trade:
                         open_flag = True
                         find_flag = False
                         if print_flag:
-                            print(" - > Сделка открыта. Параметры:")
+                            print(" -> Сделка открыта. Параметры:")
                             print(f"    Type: {self.Buy_or_sell} | TP: {tp} | SL: {sl} | Open time: {tiktime}")
                     if self.Buy_or_sell == 'sell':
                         self.Ordopen = low
@@ -126,7 +128,7 @@ class Trade:
                         open_flag = True
                         find_flag = False
                         if print_flag:
-                            print(" - > Сделка открыта. Параметры:")
+                            print(" -> Сделка открыта. Параметры:")
                             print(f"    Type: {self.Buy_or_sell} | TP: {tp} | SL: {sl} | Open time: {tiktime}")
         if print_flag:
             print(self.Profit, self.Time)
