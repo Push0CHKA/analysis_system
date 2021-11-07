@@ -1,4 +1,4 @@
-from modules import functions as fun, draw
+from modules import functions as fun
 # --- > параметры < --- #
 # список валютных пар (без йены)
 cur_pairs1 = ['AUDCAD', 'AUDCHF', 'AUDNZD', 'CADCHF', 'EURAUD', 'EURCAD', 'EURCHF', 'EURGBP', 'EURNZD', 'EURUSD',
@@ -56,8 +56,21 @@ cur_params = {'AUDCAD': [test_tp, test_sl, lot, sl_border, points_up, commission
 # fun.draw_all_prof_drawd(cur_pairs1, cash, cur_params)
 
 # трейдинг с подбором параметров
-ordparams = [test_tp, test_sl, sl_border, points_up, lot]
-rev_flag = True  # обратная стратегия
-fun.auto_params(cur_pairs3, cash, max_med, min_med, rev_flag, cur_params)
-draw.draw_trading(cur_pairs3, cash, max_med, min_med, cur_params, rev_flag)
+# rev_flag = True  # обратная стратегия
+# fun.auto_params(cur_pairs3, cash, max_med, min_med, rev_flag, cur_params)
 
+# трейдинг с установленными параметрами
+# draw.draw_trading(cur_pairs3, cash, max_med, min_med, cur_params, rev_flag)
+
+# трейдинг с "обучением" (метод для подбора времени обучения)
+# cur_pairs = ['AUDCAD']
+# rev_flag = False  # обратная стратегия
+# learn_time = 15  # дней на обучение
+# trading_time = 7  # дней на торговлю
+# fun.learn_trading_params(cur_pairs, cash, max_med, min_med, rev_flag, cur_params, learn_time, trading_time)
+
+cur_pair = 'AUDCAD'
+rev_flag = False  # обратная стратегия
+learn_time = 15  # дней на обучение
+trading_time = 7  # дней на торговлю
+fun.trading(cur_pair, cash, max_med, min_med, rev_flag, cur_params, learn_time, trading_time)
