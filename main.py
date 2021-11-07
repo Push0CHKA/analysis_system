@@ -50,7 +50,7 @@ cur_params = {'AUDCAD': [test_tp, test_sl, lot, sl_border, points_up, commission
               'USDJPY': [test_tp, test_sl, lot * 0.01, sl_border, points_up, commission, 3, ldiff_koeff]}
 
 # автоматическое обновление данных для всех валютных пар из передаваемого списка
-# fun.auto_update_currs(cur_pairs3)
+fun.auto_update_currs(cur_pairs3)
 
 # построение точечного графика профита от просадок
 # fun.draw_all_prof_drawd(cur_pairs1, cash, cur_params)
